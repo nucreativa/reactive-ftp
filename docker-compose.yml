@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - ./ftp/:/home/${FTP_USER}
+    ports:
+      - ${FTP_PORT}:22
+    command: ${FTP_USER}:${FTP_PASS}:1001
+  deno:
+    build: .
+    volumes:
+      - ./ftp/:/home/${FTP_USER}
